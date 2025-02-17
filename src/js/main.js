@@ -42,10 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const horizontalStart = width / 3;
   const horizontalRange = width / 3; 
 
-  // For vertical positioning, spawn bubbles between 50% and 90% of container height.
-  // This ensures they are not near the top.
+  // For vertical positioning, spawn bubbles between 50% and 90% of container height - ensures they are not near the top.
   const verticalStart = height * 0.5;
-  const verticalRange = height * 0.4; // 90% - 50% = 40%
+  const verticalRange = height * 0.4;
 
   chosenDigitalAds.forEach((text) => {
     // Create bubble element
