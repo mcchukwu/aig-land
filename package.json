@@ -1,0 +1,24 @@
+{
+	"name": "aig-land",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.5.2",
+		"postcss-custom-media": "^11.0.5",
+		"postcss-import": "^16.1.0",
+		"postcss-mixins": "^11.0.3",
+		"postcss-nesting": "^13.0.1",
+		"postcss-preset-env": "^10.1.4",
+		"vite": "^6.1.0"
+	},
+	"dependencies": {
+		"gsap": "^3.12.7"
+	}
+}

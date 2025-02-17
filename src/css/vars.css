@@ -1,0 +1,124 @@
+/* variables */
+@custom-media --viewport-small (max-width: 1024px);
+@custom-media --viewport-small-inv (min-width: 1025px);
+
+@custom-media --viewport-xsmall (max-width: 640px);
+@custom-media --viewport-xsmall-inv (min-width: 641px);
+
+:root {
+	--font-size: 16px;
+
+	/* --font-size: calc(100vw / 80); */
+}
+/* @media only screen and (max-width: 600px) {
+	:root {
+		--font-size: calc(100vw / 30);
+	}
+} */
+
+:root {
+	--sans-font: "Montserrat", system-ui, -apple-system, sans-serif;
+	--title-font: "Montserrat", system-ui, -apple-system, sans-serif;
+	/* --mono-font: "IBM Plex Mono", monospace; */
+
+	--unit: calc(var(--font-size) * 0.5);
+
+	/* line height - the basis for vertical spacing */
+	--line-height: calc(var(--font-size) * 1.5);
+
+	/* horizontal and vertical spacing basis */
+	--baseline: var(--unit);
+
+	/* container max width */
+	--container-max-width: calc(var(--unit) * 152);
+
+	/* spacing around blocks */
+	--blockSpacingTop: 0px;
+	--blockSpacingBottom: var(--line-height);
+
+	/* horizontal line */
+	--hr-weight: 2px;
+
+	/* heading metrics */
+	--h1-margin-bottom: var(--line-height);
+	--h2-margin-bottom: calc(var(--line-height) * 0.5);
+	--h3-margin-bottom: calc(var(--unit) * 0.5);
+
+	/* grid & column spacing */
+	--column-gap: calc(var(--unit) * 8);
+	--row-gap: calc(var(--unit) * 8);
+	--column-gap-compact: calc(var(--unit) * 4);
+	--row-gap-compact: calc(var(--unit) * 2);
+
+	/* 1 pixel minimum resulution */
+	--displayScale: 1;
+	--pixel: 1px;
+
+	/* Colors */
+	--foreground-color-rgb: 0, 0, 0;
+	--foreground-color-a: 1;
+	--foreground-color-a-dimmed: 0.4;
+	--foreground-color: rgba(
+		var(--foreground-color-rgb),
+		var(--foreground-color-a)
+	);
+	--foreground-color-dimmed: rgba(
+		var(--foreground-color-rgb),
+		var(--foreground-color-a-dimmed)
+	);
+	--background-color: white;
+	--letterbox-color: #333;
+	--box-link-hover-color: rgba(var(--foreground-color-rgb), 0.07);
+
+	--accent-color: var(--blue);
+	--accent-color-hover: var(--light-blue);
+
+	/* --accent-color-darkmode: color-mod(var(--blue) lightness(80%)); */
+
+	--menu-active-color: var(--foreground-color);
+	--menu-inactive-color: rgba(0, 0, 0, 0.3);
+
+	/* Generic colors */
+	--blue: #174ea1;
+	--light-blue: rgb(35, 97, 190);
+	--orange: #f5742a;
+	--gray: rgb(71, 71, 71);
+	--yellow: #ffa500;
+
+	@supports (color: color(display-p3 1 1 1)) {
+		--blue: color(display-p3 0.09 0.31 0.63);
+		--orange: color(display-p3 0.96 0.45 0.16);
+		--yellow: color(display-p3 1 0.65 0);
+	}
+}
+
+@media only screen and (min-resolution: 1.5dppx) {
+	:root {
+		--displayScale: 1.5;
+		--pixel: 0.75px;
+	}
+}
+@media only screen and (min-resolution: 2dppx) {
+	:root {
+		--displayScale: 2;
+		--pixel: 0.5px;
+	}
+}
+@media only screen and (min-resolution: 2.5dppx) {
+	:root {
+		--displayScale: 2.5;
+		--pixel: 0.4px;
+	}
+}
+@media only screen and (min-resolution: 3dppx) {
+	:root {
+		--displayScale: 3;
+		--pixel: 0.3333333333px;
+	}
+}
+@media only screen and (min-resolution: 3.5dppx) {
+	:root {
+		--displayScale: 4;
+		--pixel: 0.25px;
+	}
+}
