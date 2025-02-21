@@ -2,24 +2,21 @@
 @import url("vars.css");
 @import url("grid.css");
 
+/* base.css - utillity and general styles*/
 :root {
 	font-family: var(--sans-font);
 	font-size: var(--font-size);
 	line-height: var(--line-height);
+	background-color: var(--background-color);
 	color: var(--foreground-color);
 	letter-spacing: -0.01em;
-	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	font-variant-ligatures: contextual common-ligatures;
-	background-color: var(--background-color);
 }
 
 body {
-	-webkit-overflow-scrolling: touch;
 	scroll-behavior: smooth;
-
 	background: var(--background-color);
-	min-height: 100vh;
 }
 
 /* ------ mixin definitions ------ */
@@ -58,7 +55,7 @@ body {
 
 /* ------ generic helper classes ------ */
 .container {
-	max-width: var(--container-max-width); /* 136, 152, 192  */
+	max-width: var(--container-max-width);
 }
 
 .primary-btn {
@@ -207,7 +204,6 @@ div.highlighter-rouge {
 h1 {
 	@mixin font-title-1;
 
-	margin-top: calc(var(--line-height) * 2);
 	margin-bottom: var(--h1-margin-bottom);
 }
 h2 {
@@ -342,7 +338,7 @@ m-grid {
 /* ------ columns ------ */
 @define-mixin flow-cols {
 	display: block;
-	column-count: 3;
+	column-count: 2;
 	column-gap: var(--column-gap);
 	column-fill: balance;
 
@@ -460,8 +456,8 @@ header {
 		}
 	}
 
-	& .hero {
-		margin: auto;
+	& .hero-wrapper {
+		margin: 0 auto;
 
 		& .hero-text {
 			max-width: 64ch;

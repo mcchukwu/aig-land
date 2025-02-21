@@ -30,7 +30,7 @@
 	--baseline: var(--unit);
 
 	/* container max width */
-	--container-max-width: calc(var(--unit) * 152);
+	--container-max-width: calc(var(--unit) * 152); /* 136, 152, 192  */
 
 	/* spacing around blocks */
 	--blockSpacingTop: 0px;
@@ -55,7 +55,7 @@
 	--pixel: 1px;
 
 	/* Colors */
-	--foreground-color-rgb: 0, 0, 0;
+	--foreground-color-rgb: 30, 30, 30;
 	--foreground-color-a: 1;
 	--foreground-color-a-dimmed: 0.4;
 	--foreground-color: rgba(
@@ -72,7 +72,6 @@
 
 	--accent-color: var(--blue);
 	--accent-color-hover: var(--light-blue);
-
 	/* --accent-color-darkmode: color-mod(var(--blue) lightness(80%)); */
 
 	--menu-active-color: var(--foreground-color);
@@ -80,10 +79,11 @@
 
 	/* Generic colors */
 	--blue: #174ea1;
-	--light-blue: rgb(35, 97, 190);
 	--orange: #f5742a;
-	--gray: rgb(71, 71, 71);
 	--yellow: #ffa500;
+
+	--light-blue: rgb(35, 97, 190);
+	--gray: rgb(71, 71, 71);
 
 	@supports (color: color(display-p3 1 1 1)) {
 		--blue: color(display-p3 0.09 0.31 0.63);
