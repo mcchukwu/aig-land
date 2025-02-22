@@ -22,21 +22,21 @@ body {
 /* ------ mixin definitions ------ */
 @define-mixin font-title-1 {
 	font-family: var(--title-font);
-	font-weight: 700;
-	font-size: clamp(2.25rem, calc(2.25rem + 1vw), 3rem);
-	line-height: clamp(2.5rem, calc(2.5rem + 1vw), 3.25rem);
+	font-weight: 600;
+	font-size: clamp(2rem, calc(2rem + 1vw), 3rem);
+	line-height: clamp(2.25rem, calc(2.25rem + 1vw), 3.25rem);
 }
 
 @define-mixin font-title-2 {
 	font-family: var(--title-font);
-	font-weight: 700;
-	font-size: clamp(1.5rem, calc(1.5rem + 0.5vw), 2rem);
-	line-height: clamp(1.75rem, calc(1.75rem + 0.5vw), 2.25rem);
+	font-weight: 600;
+	font-size: clamp(1rem, calc(1rem + 0.5vw), 2rem);
+	line-height: clamp(1.5rem, calc(1.5rem + 0.5vw), 2.25rem);
 	letter-spacing: -0.02em;
 }
 
 @define-mixin font-title-3 {
-	font-weight: 700;
+	font-weight: 600;
 	font-size: inherit;
 }
 
@@ -148,7 +148,7 @@ small) {
 b,
 strong,
 .bold {
-	font-weight: 700;
+	font-weight: 600;
 }
 i,
 em,
@@ -439,12 +439,11 @@ m-grid {
 header {
 	padding: var(--line-height);
 
-	& .logo-wrap {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	& .logo-wrapper {
+		margin: 0 auto;
 
 		& a {
+			display: block;
 			height: 7.5rem;
 			width: 7.5rem;
 
@@ -459,65 +458,72 @@ header {
 	& .hero-wrapper {
 		margin: 0 auto;
 
-		& .hero-text {
-			max-width: 64ch;
-			margin: calc(var(--line-height) * 2) auto;
-			text-align: center;
+		& .hero {
+			margin: calc(var(--line-height) * 2) 0;
 
-			& p {
-				max-width: 36ch;
-				margin: auto;
+			& .hero-text {
+				max-width: 56ch;
+
+				& p {
+					max-width: 36ch;
+					margin-bottom: var(--line-height);
+				}
 			}
+			& .hero-focal-wrapper {
+				width: 100%;
+				display: flex;
+				align-items: end;
 
-			& .hero-action {
-				margin: var(--line-height) auto;
-			}
-		}
+				& .hero-focal {
+					flex-grow: 1;
 
-		& .location-text {
-			display: flex;
-			justify-content: end;
-			margin-bottom: var(--unit);
-		}
+					& .location-text {
+						display: flex;
+						justify-content: end;
+						margin-bottom: var(--unit);
+					}
 
-		& .hero-focal {
-			background-image: url(../assets/images/hero-image.webp);
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: top;
-			width: 100%;
-			position: relative;
-			overflow: hidden;
-			border-radius: var(--unit);
+					& .hero-focal-content {
+						background-image: url(../assets/images/hero-image.webp);
+						background-size: cover;
+						background-repeat: no-repeat;
+						background-position: top;
+						width: 100%;
+						position: relative;
+						overflow: hidden;
+						border-radius: var(--unit);
 
-			&::before {
-				content: "";
-				display: block;
-				padding-top: 56.25%;
-			}
+						&::before {
+							content: "";
+							display: block;
+							padding-top: 56.25%;
+						}
 
-			/* Responsive Speech bubble styling */
-			.speech-bubble {
-				position: absolute;
-				padding: clamp(6px, 1.5%, 12px) clamp(10px, 2.5%, 20px);
-				background: var(--blue);
-				color: var(--orange);
-				border-radius: 8px;
-				font-size: clamp(10px, 1.2vw, 16px);
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-				opacity: 0;
-				max-width: 40%;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-			.speech-bubble::after {
-				content: "";
-				position: absolute;
-				bottom: -16px;
-				left: 50%;
-				transform: translateX(-50%);
-				border: 8px solid transparent;
-				border-top-color: var(--orange);
+						/* Responsive Speech bubble styling */
+						.speech-bubble {
+							position: absolute;
+							padding: clamp(6px, 1.5%, 12px) clamp(10px, 2.5%, 20px);
+							background: var(--blue);
+							color: var(--orange);
+							border-radius: 8px;
+							font-size: clamp(10px, 1.2vw, 16px);
+							box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+							opacity: 0;
+							max-width: 40%;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+						.speech-bubble::after {
+							content: "";
+							position: absolute;
+							bottom: -16px;
+							left: 50%;
+							transform: translateX(-50%);
+							border: 8px solid transparent;
+							border-top-color: var(--orange);
+						}
+					}
+				}
 			}
 		}
 	}

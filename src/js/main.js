@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const chosenDigitalAds = getRandomUniqueElements(digitalAds, 3);
 
   // Select the overall parent container
-  const container = document.querySelector(".hero-focal");
+  const container = document.querySelector(".hero-focal-content");
 
   // Get container dimensions after layout
   const { width, height } = container.getBoundingClientRect();
