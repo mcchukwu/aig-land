@@ -32,6 +32,11 @@ header {
 			& .hero-text {
 				max-width: 48ch;
 
+				& * {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+
 				& p {
 					margin-bottom: var(--line-height);
 				}
