@@ -2,6 +2,7 @@
 	font: inherit;
 	line-height: inherit;
 }
+
 a,
 abbr,
 acronym,
@@ -91,6 +92,7 @@ video {
 	border: 0;
 	vertical-align: baseline;
 }
+
 blockquote,
 q {
 	quotes: none;
@@ -102,10 +104,12 @@ q:after {
 	content: "";
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 a,
 a:active,
 a:visited {

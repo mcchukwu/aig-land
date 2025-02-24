@@ -1,0 +1,64 @@
+/* index.css */
+header {
+	padding: var(--body-padding-x);
+	height: 100dvh;
+
+	& .logo-wrapper {
+		max-width: calc(var(--unit) * 152);
+		margin: auto;
+
+		& a {
+			display: block;
+			height: 6rem;
+			width: 6rem;
+
+			background-image: url(../assets/images/aig-logo.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			overflow: hidden;
+		}
+	}
+
+	& .hero-wrapper {
+		margin: var(--line-height) auto;
+
+		& .hero {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			padding-top: calc(var(--line-height) * 2);
+
+			& .hero-text {
+				max-width: 48ch;
+
+				& p {
+					margin-bottom: var(--line-height);
+				}
+			}
+
+			& .hero-focal {
+				flex-grow: 1;
+				display: flex;
+				justify-content: center;
+
+				& img {
+					margin: 0 auto;
+					max-width: 300px;
+					object-fit: contain; /* or "contain" depending on your needs */
+				}
+			}
+		}
+	}
+}
+
+main {
+	& section {
+		padding: 0 var(--body-padding-x);
+	}
+
+	& .proof-wrapper {
+		margin: 0 auto;
+		height: 100dvh;
+	}
+}

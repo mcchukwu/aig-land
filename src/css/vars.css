@@ -7,19 +7,11 @@
 
 :root {
 	--font-size: 16px;
-
-	/* --font-size: calc(100vw / 80); */
 }
-/* @media only screen and (max-width: 600px) {
-	:root {
-		--font-size: calc(100vw / 30);
-	}
-} */
 
 :root {
 	--sans-font: "Montserrat", system-ui, -apple-system, sans-serif;
 	--title-font: "Montserrat", system-ui, -apple-system, sans-serif;
-	/* --mono-font: "IBM Plex Mono", monospace; */
 
 	--unit: calc(var(--font-size) * 0.5);
 
@@ -30,11 +22,13 @@
 	--baseline: var(--unit);
 
 	/* container max width */
-	--container-max-width: calc(var(--unit) * 152); /* 136, 152, 192  */
+	--container-max-width: calc(var(--unit) * 130); /* 136, 152, 192  */
 
 	/* spacing around blocks */
 	--blockSpacingTop: 0px;
 	--blockSpacingBottom: var(--line-height);
+
+	--body-padding-x: var(--line-height);
 
 	/* horizontal line */
 	--hr-weight: 2px;
@@ -67,15 +61,9 @@
 		var(--foreground-color-a-dimmed)
 	);
 	--background-color: white;
-	--letterbox-color: #333;
-	--box-link-hover-color: rgba(var(--foreground-color-rgb), 0.07);
 
 	--accent-color: var(--blue);
 	--accent-color-hover: var(--light-blue);
-	/* --accent-color-darkmode: color-mod(var(--blue) lightness(80%)); */
-
-	--menu-active-color: var(--foreground-color);
-	--menu-inactive-color: rgba(0, 0, 0, 0.3);
 
 	/* Generic colors */
 	--blue: #174ea1;

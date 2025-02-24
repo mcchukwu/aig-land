@@ -17,40 +17,32 @@
 body {
 	scroll-behavior: smooth;
 	background: var(--background-color);
+	color: var(--foreground-color);
 }
 
 /* ------ mixin definitions ------ */
 @define-mixin font-title-1 {
 	font-family: var(--title-font);
-	font-weight: 600;
-	font-size: clamp(2rem, calc(2rem + 1vw), 3rem);
-	line-height: clamp(2.25rem, calc(2.25rem + 1vw), 3.25rem);
+	font-weight: 700;
+	font-size: 2rem;
+	line-height: 2.25rem;
 }
 
 @define-mixin font-title-2 {
 	font-family: var(--title-font);
-	font-weight: 600;
-	font-size: clamp(1rem, calc(1rem + 0.5vw), 2rem);
-	line-height: clamp(1.5rem, calc(1.5rem + 0.5vw), 2.25rem);
+	font-weight: 700;
+	font-size: 1.5rem;
+	line-height: 1.75rem;
 	letter-spacing: -0.02em;
 }
 
 @define-mixin font-title-3 {
-	font-weight: 600;
+	font-weight: 700;
 	font-size: inherit;
 }
 
 @define-mixin dimmed-fg {
 	color: var(--foreground-color-dimmed);
-}
-
-@define-mixin default-dark-mode-vars {
-	--background-color: #333;
-	--foreground-color-rgb: 255, 255, 255;
-	--menu-inactive-color: rgba(var(--foreground-color-rgb), 0.3);
-	--box-link-hover-color: black;
-	--letterbox-color: #111;
-	--accent-color: var(--accent-color-darkmode);
 }
 
 /* ------ generic helper classes ------ */
@@ -148,7 +140,7 @@ small) {
 b,
 strong,
 .bold {
-	font-weight: 600;
+	font-weight: 700;
 }
 i,
 em,
@@ -432,183 +424,5 @@ m-grid {
 	}
 	[flow-cols-xs="8"] {
 		column-count: 8;
-	}
-}
-
-/* index.css */
-header {
-	padding: var(--line-height);
-
-	& .logo-wrapper {
-		margin: 0 auto;
-
-		& a {
-			display: block;
-			height: 7.5rem;
-			width: 7.5rem;
-
-			background-image: url(../assets/images/aig-logo.png);
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-			overflow: hidden;
-		}
-	}
-
-	& .hero-wrapper {
-		margin: 0 auto;
-
-		& .hero {
-			margin: calc(var(--line-height) * 2) 0;
-
-			& .hero-text {
-				max-width: 56ch;
-
-				& p {
-					max-width: 36ch;
-					margin-bottom: var(--line-height);
-				}
-			}
-			& .hero-focal-wrapper {
-				width: 100%;
-				display: flex;
-				align-items: end;
-
-				& .hero-focal {
-					flex-grow: 1;
-
-					& .location-text {
-						display: flex;
-						justify-content: end;
-						margin-bottom: var(--unit);
-					}
-
-					& .hero-focal-content {
-						background-image: url(../assets/images/hero-image.webp);
-						background-size: cover;
-						background-repeat: no-repeat;
-						background-position: top;
-						width: 100%;
-						position: relative;
-						overflow: hidden;
-						border-radius: var(--unit);
-
-						&::before {
-							content: "";
-							display: block;
-							padding-top: 56.25%;
-						}
-
-						/* Responsive Speech bubble styling */
-						.speech-bubble {
-							position: absolute;
-							padding: clamp(6px, 1.5%, 12px) clamp(10px, 2.5%, 20px);
-							background: var(--blue);
-							color: var(--orange);
-							border-radius: 8px;
-							font-size: clamp(10px, 1.2vw, 16px);
-							box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-							opacity: 0;
-							max-width: 40%;
-							white-space: nowrap;
-							text-overflow: ellipsis;
-						}
-						.speech-bubble::after {
-							content: "";
-							position: absolute;
-							bottom: -16px;
-							left: 50%;
-							transform: translateX(-50%);
-							border: 8px solid transparent;
-							border-top-color: var(--orange);
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-main {
-	& .about {
-		padding: 0 var(--line-height);
-
-		& .about-wrapper {
-			margin: 0 auto;
-			padding: calc(var(--line-height) * 2) 0;
-
-			& p {
-				max-width: 60ch;
-			}
-		}
-	}
-
-	& .mission {
-		padding: 0 var(--line-height);
-		background: var(--blue);
-
-		& .mission-wrapper {
-			margin: 0 auto;
-			padding: calc(var(--line-height) * 2) 0;
-
-			& .mission-content {
-				background: var(--orange);
-				color: var(--background-color);
-				padding: var(--line-height);
-				border-radius: var(--unit);
-			}
-		}
-	}
-
-	& .service {
-		padding: 0 var(--line-height);
-		background: var(--orange);
-
-		& .service-wrapper {
-			margin: 0 auto;
-			padding: calc(var(--line-height) * 2) 0;
-		}
-	}
-
-	& .how {
-		padding: 0 var(--line-height);
-
-		& .how-wrapper {
-			margin: 0 auto;
-			padding: calc(var(--line-height) * 2) 0;
-		}
-	}
-
-	& .cta {
-		padding: 0 var(--line-height);
-		background: var(--gray);
-		color: var(--background-color);
-
-		& .cta-wrapper {
-			margin: 0 auto;
-			padding: calc(var(--line-height) * 2) 0;
-			text-align: center;
-
-			& .cta-text p {
-				max-width: 36ch;
-				margin: auto;
-			}
-
-			& .cta-action {
-				margin: var(--line-height) auto;
-			}
-		}
-	}
-}
-
-footer {
-	padding: 0 var(--line-height);
-	background: var(--gray);
-	color: var(--background-color);
-	text-align: center;
-
-	.footer-wrapper {
-		margin: 0 auto;
-		padding-bottom: var(--line-height);
 	}
 }
