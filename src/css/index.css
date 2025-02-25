@@ -1,7 +1,6 @@
 /* index.css */
 header {
-	padding: var(--body-padding-x);
-	height: 100dvh;
+	padding: var(--body-padding-x) var(--body-padding-x) 0;
 
 	& .logo-wrapper {
 		max-width: calc(var(--unit) * 152);
@@ -21,7 +20,7 @@ header {
 	}
 
 	& .hero-wrapper {
-		margin: var(--line-height) auto;
+		margin: 0 auto;
 
 		& .hero {
 			display: flex;
@@ -60,10 +59,10 @@ header {
 main {
 	& section {
 		padding: 0 var(--body-padding-x);
+		background: var(--blue);
 	}
 
 	& .proof-wrapper {
 		margin: 0 auto;
-		height: 100dvh;
 	}
 }

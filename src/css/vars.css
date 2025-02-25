@@ -48,6 +48,9 @@
 	--displayScale: 1;
 	--pixel: 1px;
 
+	/* view height unit of percentage */
+	--vh: 1vh;
+
 	/* Colors */
 	--foreground-color-rgb: 30, 30, 30;
 	--foreground-color-a: 1;

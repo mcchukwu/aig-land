@@ -15,6 +15,7 @@
 }
 
 body {
+	height: 100%;
 	scroll-behavior: smooth;
 	background: var(--background-color);
 	color: var(--foreground-color);
@@ -48,6 +49,17 @@ body {
 /* ------ generic helper classes ------ */
 .container {
 	max-width: var(--container-max-width);
+}
+
+.full-screen {
+	min-height: calc(var(--vh, 1vh) * 100);
+	scroll-snap-align: start;
+}
+.scroll-down {
+	margin-top: 20px;
+	text-decoration: none;
+	font-size: 1.2em;
+	color: #007bff;
 }
 
 .primary-btn {
@@ -425,4 +437,11 @@ m-grid {
 	[flow-cols-xs="8"] {
 		column-count: 8;
 	}
+}
+
+/*-------- Fullscreen base -----------*/
+.fs-container {
+	height: 100%;
+	overflow-y: scroll;
+	scroll-snap-type: y mandatory;
 }
