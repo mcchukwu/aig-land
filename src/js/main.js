@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "-=0.5"
     );
 
+
   // Set Initial State for Locations and Pins
   gsap.set(".locations p, .pins .pin", { opacity: 0, y: 20 });
 
@@ -79,13 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Proof Section Animations Upon Visibility
+
+  // Proof Section Animations
   const proofSection = document.querySelector(".proof");
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Animate the proof-number from a near-120 value to 120,000,000,000
+          // Animate the proof-number from a value to 120,000,000,000
           const proofNumberEl = document.querySelector(".proof-number");
           const startVal = 119950000000;
           const endVal = 120000000000;
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           });
 
-          // Create a timeline for the fade-up animations of locations paragraphs and pins
+          // Create a timeline for the fade-up animations of location-paragraphs and pins
           gsap.timeline()
             .to(".proof > p:not(.proof-number), .locations p", {
               opacity: 1,
@@ -128,4 +130,32 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.5 }
   );
   observer.observe(proofSection);
+
+
+  // Mission Section Animations
+  // gsap.set(".mission-text", { opacity: 0, y: 20 });
+  const missionSection = document.querySelector(".mission");
+  const missionObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.timeline()
+            .to(".mission-text h2", {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+            })
+            .to(
+              ".mission-text p",
+              { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+              "-=0.5"
+            );
+          obs.unobserve(missionSection);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  missionObserver.observe(missionSection);
 });
