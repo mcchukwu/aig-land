@@ -19,6 +19,24 @@ body {
 	scroll-behavior: smooth;
 	background: var(--background-color);
 	color: var(--foreground-color);
+
+	&::before {
+		content: "";
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 1;
+		pointer-events: none;
+		background-image: linear-gradient(
+				90deg,
+				rgba(0, 0, 0, 0.05) 1px,
+				transparent 1px
+			),
+			linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+		background-size: 20px 20px;
+	}
 }
 
 /* ------ mixin definitions ------ */
