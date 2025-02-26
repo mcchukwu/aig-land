@@ -7,9 +7,7 @@ import { Draggable } from "gsap/Draggable";
 gsap.registerPlugin(Draggable);
 
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
   // Hero Text Fade-Up Animation
-  // =========================
   gsap.timeline()
     .to(".hero-text h1", {
       opacity: 1,
@@ -28,14 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "-=0.5"
     );
 
-  // =========================
   // Set Initial State for Locations and Pins
-  // =========================
   gsap.set(".locations p, .pins .pin", { opacity: 0, y: 20 });
 
-  // =========================
   // Draggable Pins Initialization
-  // =========================
   const pinsContainer = document.querySelector(".pins");
   const containerWidth = pinsContainer.offsetWidth;
   const containerHeight = pinsContainer.offsetHeight;
@@ -85,9 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // =========================
   // Proof Section Animations Upon Visibility
-  // =========================
   const proofSection = document.querySelector(".proof");
   const observer = new IntersectionObserver(
     (entries, obs) => {

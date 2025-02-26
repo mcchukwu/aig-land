@@ -56,9 +56,9 @@ main {
 				flex-wrap: wrap;
 
 				& img {
-					margin: 0 auto;
-					max-width: 300px;
-					object-fit: contain;
+					margin: 0;
+					max-width: 320px;
+					object-fit: cover;
 					border-radius: 50%;
 				}
 			}
@@ -69,7 +69,7 @@ main {
 			padding: calc(var(--line-height) * 2) 0;
 
 			& .proof-number {
-				font-size: clamp(2.25rem, 10vw, 8rem);
+				font-size: clamp(2.5rem, 10vw, 8rem);
 				margin-top: clamp(3rem, 9vw, 8rem);
 				margin-bottom: clamp(1rem, 5vw, 8rem);
 			}
@@ -124,6 +124,10 @@ main {
 					}
 				}
 			}
+		}
+
+		& .mission-wrapper {
+			margin: 0 auto;
 		}
 	}
 }
