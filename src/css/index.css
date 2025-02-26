@@ -93,7 +93,7 @@ main {
 				& .pins {
 					position: relative;
 					width: 500px;
-					height: 200px;
+					height: 400px;
 					margin-left: auto;
 
 					& .pin {
@@ -101,6 +101,7 @@ main {
 						cursor: grab;
 						background: var(--blue);
 						color: var(--background-color);
+						font-size: 0.789rem;
 						border-radius: var(--unit);
 						padding: var(--unit) calc(var(--unit) * 2);
 						box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
