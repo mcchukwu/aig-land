@@ -71,7 +71,7 @@ main {
 			& .proof-number {
 				font-size: clamp(2.5rem, 10vw, 8rem);
 				margin-top: clamp(3rem, 9vw, 8rem);
-				margin-bottom: clamp(1rem, 5vw, 8rem);
+				margin-bottom: clamp(1rem, 5vw, 4rem);
 			}
 
 			& .locations {
