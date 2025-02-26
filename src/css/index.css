@@ -85,15 +85,14 @@ main {
 				width: 100%;
 				position: relative;
 				padding-right: calc(var(--unit) * 4);
-				overflow-x: hidden;
 
 				@media (--viewport-s) {
 				}
 
 				& .pins {
 					position: relative;
-					width: 500px;
-					height: 400px;
+					max-width: 500px;
+					min-height: 300px;
 					margin-left: auto;
 
 					& .pin {
