@@ -1,92 +1,139 @@
 import "../css/base.css";
 import "../css/index.css";
 
-import { gsap } from 'gsap';
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { gsap } from "gsap";
+import { Draggable } from "gsap/Draggable";
 
+gsap.registerPlugin(Draggable);
 
-gsap.registerPlugin(ScrollToPlugin);
-
-// Dynamic viewport height calculation for mobile
-function setVh() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-setVh();
-window.addEventListener('resize', setVh);
-
-// On page load, animate hero text
-document.addEventListener('DOMContentLoaded', () => {
-  const tl = gsap.timeline();
-  tl.to('.hero-text h1', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' })
-    .to('.hero-text p', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, '-=0.5')
-    .to('.hero-text a', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, '-=0.5');
-
-  // Full-screen sections swipe functionality
-  const sections = document.querySelectorAll('.full-screen');
-  let isAnimating = false;
-  let currentSectionIndex = 0;
-
-  function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) return;
-    isAnimating = true;
-    gsap.to(window, {
+document.addEventListener("DOMContentLoaded", () => {
+  // =========================
+  // Hero Text Fade-Up Animation
+  // =========================
+  gsap.timeline()
+    .to(".hero-text h1", {
+      opacity: 1,
+      y: 0,
       duration: 1,
-      scrollTo: { y: sections[index], autoKill: false },
-      ease: "power2.inOut",
-      onComplete: () => {
-        isAnimating = false;
-        currentSectionIndex = index;
-      }
+      ease: "power2.out",
+    })
+    .to(
+      ".hero-text p",
+      { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+      "-=0.5"
+    )
+    .to(
+      ".hero-text a",
+      { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+      "-=0.5"
+    );
+
+  // =========================
+  // Set Initial State for Locations and Pins
+  // =========================
+  gsap.set(".locations p, .pins .pin", { opacity: 0, y: 20 });
+
+  // =========================
+  // Draggable Pins Initialization
+  // =========================
+  const pinsContainer = document.querySelector(".pins");
+  const containerWidth = pinsContainer.offsetWidth;
+  const containerHeight = pinsContainer.offsetHeight;
+  const safePadding = 20;
+
+  const pins = document.querySelectorAll(".pin");
+  pins.forEach((pin) => {
+    // Read inline left/top positions
+    let left = parseFloat(pin.style.left);
+    let top = parseFloat(pin.style.top);
+    const pinWidth = pin.offsetWidth;
+    const pinHeight = pin.offsetHeight;
+
+    // Ensure pins are not too close to container edges
+    if (left < safePadding) left = safePadding;
+    else if (left > containerWidth - pinWidth - safePadding)
+      left = containerWidth - pinWidth - safePadding;
+    if (top < safePadding) top = safePadding;
+    else if (top > containerHeight - pinHeight - safePadding)
+      top = containerHeight - pinHeight - safePadding;
+
+    // Update inline styles with safe positions
+    pin.style.left = left + "px";
+    pin.style.top = top + "px";
+    // Save original positions for snapping back
+    pin.dataset.origLeft = left;
+    pin.dataset.origTop = top;
+
+    // Make the pin draggable and snap back on drag end
+    Draggable.create(pin, {
+      type: "x,y",
+      bounds: pinsContainer,
+      onDragStart() {
+        pin.classList.add("dragging");
+      },
+      onDragEnd() {
+        pin.classList.remove("dragging");
+        gsap.to(pin, {
+          x: 0,
+          y: 0,
+          duration: 0.3,
+          onComplete() {
+            pin.style.transform = "";
+          },
+        });
+      },
     });
-  }
-
-  // Handle wheel events (desktop)
-  window.addEventListener("wheel", (e) => {
-    if (isAnimating) return;
-
-    if (e.deltaY > 0 && currentSectionIndex < sections.length - 1) {
-      scrollToSection(currentSectionIndex + 1);
-    } else if (e.deltaY < 0 && currentSectionIndex > 0) {
-      scrollToSection(currentSectionIndex - 1);
-    }
   });
 
-  // Handle keydown events (arrow keys, page up/down, space)
-  window.addEventListener("keydown", (e) => {
-    if (isAnimating) return;
-    
-    if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
-      if (currentSectionIndex < sections.length - 1) {
-        scrollToSection(currentSectionIndex + 1);
-      }
-    }
-    if (e.key === "ArrowUp" || e.key === "PageUp") {
-      if (currentSectionIndex > 0) {
-        scrollToSection(currentSectionIndex - 1);
-      }
-    }
-  });
+  // =========================
+  // Proof Section Animations Upon Visibility
+  // =========================
+  const proofSection = document.querySelector(".proof");
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animate the proof-number from a near-120 value to 120,000,000,000
+          const proofNumberEl = document.querySelector(".proof-number");
+          const startVal = 119950000000;
+          const endVal = 120000000000;
+          proofNumberEl.textContent = startVal.toLocaleString();
+          let proofObj = { val: startVal };
+          gsap.to(proofObj, {
+            val: endVal,
+            duration: 2,
+            ease: "power2.out",
+            onUpdate: () => {
+              proofNumberEl.textContent = Math.round(proofObj.val).toLocaleString();
+            },
+          });
 
-  // Touch events for swipe on mobile
-  let touchStartY = 0;
-  let touchEndY = 0;
+          // Create a timeline for the fade-up animations of locations paragraphs and pins
+          gsap.timeline()
+            .to(".proof > p:not(.proof-number), .locations p", {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              stagger: 0.2,
+            })
+            .to(
+              ".pins .pin",
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out",
+                stagger: 0.1,
+              },
+              "-=0.3"
+            );
 
-  window.addEventListener("touchstart", (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-  });
-
-  window.addEventListener("touchend", (e) => {
-    if (isAnimating) return;
-    touchEndY = e.changedTouches[0].screenY;
-    const deltaY = touchStartY - touchEndY;
-    
-    // Sensitivity threshold for swipe
-    const threshold = 50;
-    if (deltaY > threshold && currentSectionIndex < sections.length - 1) {
-      scrollToSection(currentSectionIndex + 1);
-    } else if (deltaY < -threshold && currentSectionIndex > 0) {
-      scrollToSection(currentSectionIndex - 1);
-    }
-  });
+          obs.unobserve(proofSection);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  observer.observe(proofSection);
 });

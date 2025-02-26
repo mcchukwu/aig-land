@@ -6,7 +6,7 @@
 @custom-media --viewport-xsmall-inv (min-width: 641px);
 
 :root {
-	--font-size: 16px;
+	--font-size: 1rem;
 }
 
 :root {
@@ -22,7 +22,7 @@
 	--baseline: var(--unit);
 
 	/* container max width */
-	--container-max-width: calc(var(--unit) * 130); /* 136, 152, 192  */
+	--container-max-width: calc(var(--unit) * 136); /* 136, 152, 192  */
 
 	/* spacing around blocks */
 	--blockSpacingTop: 0px;

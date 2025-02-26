@@ -15,45 +15,84 @@
 		/>
 	</head>
 	<body>
-		<div class="fs-container">
-			<header class="full-screen">
-				<div class="logo-wrapper">
+		<header>
+			<nav>
+				<div class="container logo-wrapper">
 					<a href="/" aria-label="A I G Logo"></a>
 				</div>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero full-screen">
 				<div class="container hero-wrapper">
-					<div class="hero">
-						<div class="hero-text">
-							<h1>Unlocking Opportunities with a Secure Digital Identity</h1>
-							<p>
-								Addressing & Identity Granularity Ltd (AIG) delivers a scalable,
-								secure, and verifiable identity system, enabling inclusive
-								governance and economic growth.
-							</p>
-							<a href="/">Learn more ↗</a>
-						</div>
-						<div class="hero-focal">
-							<img
-								src="src/assets/images/hero-focal.webp"
-								alt="Animated hero focal"
-							/>
+					<div class="hero-text">
+						<h1>Unlocking Opportunities with a Secure Digital Identity</h1>
+						<p>
+							Addressing & Identity Granularity Ltd (AIG) delivers a scalable,
+							secure, and verifiable identity system, enabling inclusive
+							governance and economic growth.
+						</p>
+						<a href="/">Learn more ↗</a>
+					</div>
+					<div class="hero-focal">
+						<img
+							src="src/assets/images/hero-focal.webp"
+							alt="Animated hero focal"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section class="proof full-screen">
+				<div class="container proof-wrapper">
+					<p class="proof-number">119950000000</p>
+					<p>Digital Addresses Nationwide</p>
+					<div class="locations">
+						<p>
+							<span class="font-title-2 bold">36</span><br />
+							States + FCT
+						</p>
+						<p>
+							<span class="font-title-2 bold">774</span><br />
+							LGAs
+						</p>
+					</div>
+
+					<div class="pins-box">
+						<div class="pins">
+							<div class="pin" id="pin1" style="left: 20px; top: 30px">
+								Pin 1
+							</div>
+							<div class="pin" id="pin2" style="left: 70px; top: 150px">
+								Pin 2
+							</div>
+							<div class="pin" id="pin3" style="left: 200px; top: 80px">
+								Pin 3
+							</div>
+							<div class="pin" id="pin4" style="left: 150px; top: 200px">
+								Pin 4
+							</div>
+							<div class="pin" id="pin5" style="left: 300px; top: 50px">
+								Pin 5
+							</div>
 						</div>
 					</div>
 				</div>
-			</header>
-			<main>
-				<section class="proof full-screen">
-					<div class="container proof-wrapper"></div>
-				</section>
-			</main>
+			</section>
 
-			<footer>
-				<!-- <div class="container footer-wrapper">
+			<section class="mission full-screen">
+				<div class="container mission-wrapper"></div>
+			</section>
+		</main>
+
+		<footer>
+			<!-- <div class="container footer-wrapper">
 					<m-grid columns="1" class="compact">
 					<small>&copy; 2025 AIG Ltd. All Rights Reserved.</small>
 					</m-grid>
 					</div> -->
-			</footer>
-		</div>
+		</footer>
 		<script type="module" defer src="/src/js/main.js"></script>
 	</body>
 </html>
