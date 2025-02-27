@@ -1,7 +1,7 @@
 /* m-grid - grid system for responsive web layout */
 m-grid {
 	display: grid;
-	--grid-template-columns: repeat(2, 1fr);
+	--grid-template-columns: repeat(3, 1fr);
 	grid-template-columns: var(--grid-template-columns);
 	--grid-column-start: 1;
 	--grid-column-end: -1;

@@ -1,4 +1,3 @@
-import "../css/base.css";
 import "../css/index.css";
 
 import { gsap } from "gsap";
@@ -133,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // Mission Section Animations
-  // gsap.set(".mission-text", { opacity: 0, y: 20 });
   const missionSection = document.querySelector(".mission");
   const missionObserver = new IntersectionObserver(
     (entries, obs) => {
