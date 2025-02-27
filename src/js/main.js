@@ -28,7 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Set Initial State for Locations and Pins
   gsap.set(".locations p, .pins .pin", { opacity: 0, y: 20 });
-
+  gsap.set(".mission-wrapper h2, .mission-wrapper p", { opacity: 0, y: 20 });
+  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper", { scale: 0 });
+  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon", { scale: 0 });
+  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label", { opacity: 0, y: 20 });
+  
   // Draggable Pins Initialization
   const pinsContainer = document.querySelector(".pins");
   const containerWidth = pinsContainer.offsetWidth;
@@ -138,14 +142,27 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           gsap.timeline()
-            .to(".mission-text h2", {
+            .to(".mission-wrapper h2", {
               opacity: 1,
               y: 0,
               duration: 1,
               ease: "power2.out",
             })
+            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper", {
+              scale: 1.1,
+              duration: 1.6,
+              ease: "power2.out"
+            })
+            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon", {
+              scale: 1.1,
+              duration: 1,
+              ease: "power2.out"
+            })
+            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label", {
+              opacity: 1, y: 0, duration: 1, ease: "power2.out"
+            })
             .to(
-              ".mission-text p",
+              ".mission-wrapper p",
               { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
               "-=0.5"
             );
