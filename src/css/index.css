@@ -187,14 +187,14 @@ main {
 							width: calc(var(--unit) * 4);
 							height: calc(var(--unit) * 4);
 							stroke: var(--orange);
-							transition: all 1s ease;
+							transition: all 0.9s ease;
 						}
 
 						&:hover {
-							scale: -0.9;
+							scale: 1.1;
 							box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 							& .mission-focal-icon {
-								scale: -0.9;
+								scale: 1.1;
 							}
 						}
 					}
