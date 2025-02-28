@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						if (entry.isIntersecting) {
 							gsap.to(entry.target, {
 								scale: 1,
-								duration: 1,
+								duration: 1.6,
 								ease: "power2.out",
 							});
 							observer.unobserve(entry.target);
@@ -320,15 +320,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     
       label.addEventListener('mouseleave', () => {
-        const wrapper = label.nextElementSibling;
-        if (wrapper) {
-          gsap.to(wrapper, {
+        const iconWrapper = label.nextElementSibling;
+        if (iconWrapper) {
+          gsap.to(iconWrapper, {
             scale: 1,
             boxShadow: "none",
             duration: 0.3,
             ease: "power2.out"
           });
-          const icon = wrapper.querySelector('.mission-focal-icon');
+          const icon = iconWrapper.querySelector('.mission-focal-icon');
           if (icon) {
             gsap.to(icon, {
               scale: 1,
