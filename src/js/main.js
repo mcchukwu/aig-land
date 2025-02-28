@@ -86,8 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // -----------------------------
-  // Proof Section Animations (Individual Observation)
+  // Proof Section Animations
   // -----------------------------
   // Animate the proof number individually
   const proofNumberEl = document.querySelector(".proof-number");
@@ -115,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   proofNumberObserver.observe(proofNumberEl);
 
-  // Animate each paragraph in .proof (except the proof number) and .locations individually
+  // Animate each paragraph in .proof (except the proof number) and .locations
   document.querySelectorAll(".proof > p:not(.proof-number), .locations p").forEach((el) => {
     const obs = new IntersectionObserver(
       (entries, observer) => {
@@ -157,9 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
     obs.observe(el);
   });
 
-  // -----------------------------
-  // Mission Section Animations (Individual Observation)
-  // -----------------------------
+
+  // Mission Section Animations
+  // ------------------
   // Animate each h2 and paragraph in .mission-wrapper
   document.querySelectorAll(".mission-wrapper h2, .mission-wrapper p").forEach((el) => {
     const obs = new IntersectionObserver(
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     obs.observe(el);
   });
 
-  // Animate each mission icon card's icon wrapper individually
+  // Animate each mission icon card's icon wrapper
   document.querySelectorAll(
     ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper"
   ).forEach((el) => {
@@ -203,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
     obs.observe(el);
   });
 
-  // Animate each mission icon individually
+  // Animate each mission icon
   document.querySelectorAll(
     ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon"
   ).forEach((el) => {
@@ -225,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
     obs.observe(el);
   });
 
-  // Animate each mission icon label individually
+  // Animate each mission icon label
   document.querySelectorAll(
     ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label"
   ).forEach((el) => {
