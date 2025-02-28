@@ -25,14 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
       "-=0.5"
     );
 
-
-  // Set Initial State for Locations and Pins
+  // Set Initial State for Locations and Pins and Mission elements
   gsap.set(".locations p, .pins .pin", { opacity: 0, y: 20 });
   gsap.set(".mission-wrapper h2, .mission-wrapper p", { opacity: 0, y: 20 });
-  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper", { scale: 0 });
-  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon", { scale: 0 });
-  gsap.set(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label", { opacity: 0, y: 20 });
-  
+  gsap.set(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper",
+    { scale: 0 }
+  );
+  gsap.set(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon",
+    { scale: 0 }
+  );
+  gsap.set(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label",
+    { opacity: 0, y: 20 }
+  );
+
   // Draggable Pins Initialization
   const pinsContainer = document.querySelector(".pins");
   const containerWidth = pinsContainer.offsetWidth;
@@ -41,13 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pins = document.querySelectorAll(".pin");
   pins.forEach((pin) => {
-    // Read inline left/top positions
     let left = parseFloat(pin.style.left);
     let top = parseFloat(pin.style.top);
     const pinWidth = pin.offsetWidth;
     const pinHeight = pin.offsetHeight;
 
-    // Ensure pins are not too close to container edges
     if (left < safePadding) left = safePadding;
     else if (left > containerWidth - pinWidth - safePadding)
       left = containerWidth - pinWidth - safePadding;
@@ -55,14 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (top > containerHeight - pinHeight - safePadding)
       top = containerHeight - pinHeight - safePadding;
 
-    // Update inline styles with safe positions
     pin.style.left = left + "px";
     pin.style.top = top + "px";
-    // Save original positions for snapping back
     pin.dataset.origLeft = left;
     pin.dataset.origTop = top;
 
-    // Make the pin draggable and snap back on drag end
     Draggable.create(pin, {
       type: "x,y",
       bounds: pinsContainer,
@@ -83,15 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-  // Proof Section Animations
-  const proofSection = document.querySelector(".proof");
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
+  // -----------------------------
+  // Proof Section Animations (Individual Observation)
+  // -----------------------------
+  // Animate the proof number individually
+  const proofNumberEl = document.querySelector(".proof-number");
+  const proofNumberObserver = new IntersectionObserver(
+    (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Animate the proof-number from a value to 120,000,000,000
-          const proofNumberEl = document.querySelector(".proof-number");
           const startVal = 119950000000;
           const endVal = 120000000000;
           proofNumberEl.textContent = startVal.toLocaleString();
@@ -104,73 +107,144 @@ document.addEventListener("DOMContentLoaded", () => {
               proofNumberEl.textContent = Math.round(proofObj.val).toLocaleString();
             },
           });
-
-          // Create a timeline for the fade-up animations of location-paragraphs and pins
-          gsap.timeline()
-            .to(".proof > p:not(.proof-number), .locations p", {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "power2.out",
-              stagger: 0.2,
-            })
-            .to(
-              ".pins .pin",
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.out",
-                stagger: 0.1,
-              },
-              "-=0.3"
-            );
-
-          obs.unobserve(proofSection);
+          observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.5 }
   );
-  observer.observe(proofSection);
+  proofNumberObserver.observe(proofNumberEl);
 
-
-  // Mission Section Animations
-  const missionSection = document.querySelector(".mission");
-  const missionObserver = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          gsap.timeline()
-            .to(".mission-wrapper h2", {
+  // Animate each paragraph in .proof (except the proof number) and .locations individually
+  document.querySelectorAll(".proof > p:not(.proof-number), .locations p").forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
               opacity: 1,
               y: 0,
               duration: 1,
               ease: "power2.out",
-            })
-            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper", {
-              scale: 1.1,
-              duration: 1.6,
-              ease: "power2.out"
-            })
-            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon", {
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
+
+  // Animate each pin individually
+  document.querySelectorAll(".pins .pin").forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
+
+  // -----------------------------
+  // Mission Section Animations (Individual Observation)
+  // -----------------------------
+  // Animate each h2 and paragraph in .mission-wrapper
+  document.querySelectorAll(".mission-wrapper h2, .mission-wrapper p").forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
+
+  // Animate each mission icon card's icon wrapper individually
+  document.querySelectorAll(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper"
+  ).forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
               scale: 1.1,
               duration: 1,
-              ease: "power2.out"
-            })
-            .to(".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label", {
-              opacity: 1, y: 0, duration: 1, ease: "power2.out"
-            })
-            .to(
-              ".mission-wrapper p",
-              { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-              "-=0.5"
-            );
-          obs.unobserve(missionSection);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-  missionObserver.observe(missionSection);
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
+
+  // Animate each mission icon individually
+  document.querySelectorAll(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon"
+  ).forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
+              scale: 1.1,
+              duration: 1,
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
+
+  // Animate each mission icon label individually
+  document.querySelectorAll(
+    ".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label"
+  ).forEach((el) => {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+  });
 });
