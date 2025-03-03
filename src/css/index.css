@@ -203,8 +203,8 @@ main {
 		}
 
 		&.problem {
-			background: var(--blue);
-			color: var(--background-color);
+			background: var(--orange);
+			color: var(--foreground-color);
 			position: relative;
 			z-index: 1;
 
@@ -212,6 +212,7 @@ main {
 				margin: 0 auto;
 				padding: calc(var(--line-height) * 2) 0;
 				display: flex;
+				align-items: center;
 				flex-wrap: wrap;
 				gap: calc(var(--line-height) * 2);
 
@@ -234,5 +235,37 @@ main {
 				}
 			}
 		}
+
+		&.cta {
+			background: var(--blue);
+			color: var(--background-color);
+			position: relative;
+			z-index: 1;
+
+			& .cta-wrapper {
+				margin: 0 auto;
+				padding: calc(var(--line-height) * 2) 0;
+
+				& .cta-text {
+					/* margin: auto; */
+					max-width: 64ch;
+				}
+			}
+		}
+	}
+}
+
+footer {
+	padding: 0 var(--body-padding-x);
+	background: var(--blue);
+	color: var(--background-color);
+	position: relative;
+	z-index: 1;
+
+	& .footer-wrapper {
+		margin: 0 auto;
+		padding: calc(var(--line-height) * 2) 0;
+		display: flex;
+		justify-content: end;
 	}
 }

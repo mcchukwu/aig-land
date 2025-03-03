@@ -41,6 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label",
 		{ opacity: 0, y: 20 }
 	);
+	gsap.set(".problem-wrapper .problem-focal, .problem-wrapper .problem-text", {
+		opacity: 0,
+		y: 20,
+	});
 
 	// Draggable Pins Initialization
 	const pinsContainer = document.querySelector(".pins");
@@ -239,38 +243,38 @@ document.addEventListener("DOMContentLoaded", () => {
 	document
 		.querySelectorAll(".mission-icon-card .mission-focal-icon-wrapper")
 		.forEach((iconWrapper) => {
-      iconWrapper.addEventListener('mouseenter', () => {
-        gsap.to(iconWrapper, {
-          scale: 1.1,
-          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        const icon = iconWrapper.querySelector('.mission-focal-icon');
-        if (icon) {
-          gsap.to(icon, {
-            scale: 1.1,
-            duration: 0.9,
-            ease: "power2.out"
-          });
-        }
-      });
-      iconWrapper.addEventListener('mouseleave', () => {
-        gsap.to(iconWrapper, {
-          scale: 1,
-          boxShadow: "none",
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        const icon = iconWrapper.querySelector('.mission-focal-icon');
-        if (icon) {
-          gsap.to(icon, {
-            scale: 1,
-            duration: 0.9,
-            ease: "power2.out"
-          });
-        }
-      });
+			iconWrapper.addEventListener("mouseenter", () => {
+				gsap.to(iconWrapper, {
+					scale: 1.1,
+					boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+					duration: 0.3,
+					ease: "power2.out",
+				});
+				const icon = iconWrapper.querySelector(".mission-focal-icon");
+				if (icon) {
+					gsap.to(icon, {
+						scale: 1.1,
+						duration: 0.9,
+						ease: "power2.out",
+					});
+				}
+			});
+			iconWrapper.addEventListener("mouseleave", () => {
+				gsap.to(iconWrapper, {
+					scale: 1,
+					boxShadow: "none",
+					duration: 0.3,
+					ease: "power2.out",
+				});
+				const icon = iconWrapper.querySelector(".mission-focal-icon");
+				if (icon) {
+					gsap.to(icon, {
+						scale: 1,
+						duration: 0.9,
+						ease: "power2.out",
+					});
+				}
+			});
 		});
 
 	// Animate each mission icon label
@@ -299,47 +303,79 @@ document.addEventListener("DOMContentLoaded", () => {
 			obs.observe(el);
 		});
 	// GSAP Hover Effect for labels
-  document
+	document
 		.querySelectorAll(".mission-icon-card .mission-focal-icon-label")
 		.forEach((label) => {
-			label.addEventListener('mouseenter', () => {
-        const iconWrapper = label.nextElementSibling;
-        if (iconWrapper) {
-          gsap.to(iconWrapper, {
-            scale: 1.1,
-            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
-            duration: 0.3,
-            ease: "power2.out"
-          });
-          const icon = iconWrapper.querySelector('.mission-focal-icon');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1.1,
-              duration: 0.9,
-              ease: "power2.out"
-            });
-          }
-        }
-      });
-    
-      label.addEventListener('mouseleave', () => {
-        const iconWrapper = label.nextElementSibling;
-        if (iconWrapper) {
-          gsap.to(iconWrapper, {
-            scale: 1,
-            boxShadow: "none",
-            duration: 0.3,
-            ease: "power2.out"
-          });
-          const icon = iconWrapper.querySelector('.mission-focal-icon');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
-        }
-      });
+			label.addEventListener("mouseenter", () => {
+				const iconWrapper = label.nextElementSibling;
+				if (iconWrapper) {
+					gsap.to(iconWrapper, {
+						scale: 1.1,
+						boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+						duration: 0.3,
+						ease: "power2.out",
+					});
+					const icon = iconWrapper.querySelector(".mission-focal-icon");
+					if (icon) {
+						gsap.to(icon, {
+							scale: 1.1,
+							duration: 0.9,
+							ease: "power2.out",
+						});
+					}
+				}
+			});
+
+			label.addEventListener("mouseleave", () => {
+				const iconWrapper = label.nextElementSibling;
+				if (iconWrapper) {
+					gsap.to(iconWrapper, {
+						scale: 1,
+						boxShadow: "none",
+						duration: 0.3,
+						ease: "power2.out",
+					});
+					const icon = iconWrapper.querySelector(".mission-focal-icon");
+					if (icon) {
+						gsap.to(icon, {
+							scale: 1,
+							duration: 0.3,
+							ease: "power2.out",
+						});
+					}
+				}
+			});
 		});
+
+	// Animate problem section
+	const problemSection = document.querySelector(".problem");
+	const observer = new IntersectionObserver(
+		(entries, obs) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					gsap
+						.timeline()
+						.to(".problem-wrapper .problem-focal", {
+							opacity: 1,
+							y: 0,
+							duration: 1,
+							ease: "power2.out",
+						})
+						.to(
+							".problem-wrapper .problem-text",
+							{
+								opacity: 1,
+								y: 0,
+								duration: 1,
+								ease: "power2.out",
+							},
+							"-=0.5"
+						);
+					obs.unobserve(problemSection);
+				}
+			});
+		},
+		{ threshold: 0.1 }
+	);
+	observer.observe(problemSection);
 });
