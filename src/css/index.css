@@ -73,6 +73,7 @@ main {
 
 			& .proof-number {
 				font-size: clamp(2.5rem, 10vw, 8rem);
+				font-weight: 600;
 				margin-top: clamp(3rem, 9vw, 8rem);
 				margin-bottom: clamp(1rem, 5vw, 4rem);
 			}
@@ -212,7 +213,6 @@ main {
 				margin: 0 auto;
 				padding: calc(var(--line-height) * 2) 0;
 				display: flex;
-				align-items: center;
 				flex-wrap: wrap;
 				gap: calc(var(--line-height) * 2);
 
@@ -247,8 +247,7 @@ main {
 				padding: calc(var(--line-height) * 2) 0;
 
 				& .cta-text {
-					/* margin: auto; */
-					max-width: 64ch;
+					max-width: 48ch;
 				}
 			}
 		}
