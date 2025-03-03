@@ -217,8 +217,10 @@ main {
 
 				& .problem-focal {
 					& video {
-						margin: 0 auto;
+						display: block;
+						width: 100%;
 						max-width: 720px;
+						margin: 0 auto;
 						border-radius: var(--unit);
 
 						@media (--viewport-xsmall) {
