@@ -220,6 +220,10 @@ main {
 						margin: 0 auto;
 						max-width: 720px;
 						border-radius: var(--unit);
+
+						@media (--viewport-xsmall) {
+							max-width: 100%;
+						}
 					}
 				}
 
