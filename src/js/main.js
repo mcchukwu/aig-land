@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// Mission Section Animations
-	// ------------------
+	// -----
 	// Animate each h2 and paragraph in .mission-wrapper
 	document
 		.querySelectorAll(".mission-wrapper h2, .mission-wrapper p")
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		.querySelectorAll(
 			".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper"
 		)
-		.forEach((el) => {
+		.forEach((el, index) => {
 			const obs = new IntersectionObserver(
 				(entries, observer) => {
 					entries.forEach((entry) => {
@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								scale: 1,
 								duration: 1,
 								ease: "power2.out",
+								delay: index * 0.2,
 							});
 							observer.unobserve(entry.target);
 						}
@@ -215,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		.querySelectorAll(
 			".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-wrapper .mission-focal-icon"
 		)
-		.forEach((el) => {
+		.forEach((el, index) => {
 			const obs = new IntersectionObserver(
 				(entries, observer) => {
 					entries.forEach((entry) => {
@@ -224,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								scale: 1,
 								duration: 1.6,
 								ease: "power2.out",
+								delay: index * 0.2,
 							});
 							observer.unobserve(entry.target);
 						}
@@ -276,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		.querySelectorAll(
 			".mission-wrapper .mission-focal .mission-icon-card .mission-focal-icon-label"
 		)
-		.forEach((el) => {
+		.forEach((el, index) => {
 			const obs = new IntersectionObserver(
 				(entries, observer) => {
 					entries.forEach((entry) => {
@@ -286,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								y: 0,
 								duration: 1,
 								ease: "power2.out",
+								delay: index * 0.2,
 							});
 							observer.unobserve(entry.target);
 						}

@@ -128,25 +128,25 @@ main {
 
 		& .mission-wrapper {
 			margin: 0 auto;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: 20% auto;
+			padding: calc(var(--line-height) * 2) 0;
+			display: flex;
+			flex-wrap: wrap;
 
-			@media (--viewport-xsmall) {
-				display: block;
-			}
-
-			& p {
-				grid-row: 2/3;
+			& .mission-text {
+				max-width: 48ch;
+				margin-bottom: var(--line-height);
 			}
 
 			& .mission-focal {
-				grid-column: 2/3;
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
+				grid-template-columns: repeat(3, 1fr);
 				gap: var(--row-gap-compact);
-				margin: calc(var(--line-height) * 2) auto;
+				margin: var(--line-height) auto;
 				z-index: 2;
+
+				@media (--viewport-xsmall) {
+					grid-template-columns: repeat(2, 1fr);
+				}
 
 				& .mission-icon-card {
 					display: flex;
@@ -198,6 +198,33 @@ main {
 							}
 						}
 					}
+				}
+			}
+		}
+
+		&.problem {
+			background: var(--blue);
+			color: var(--background-color);
+			position: relative;
+			z-index: 1;
+
+			& .problem-wrapper {
+				margin: 0 auto;
+				padding: calc(var(--line-height) * 2) 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: calc(var(--line-height) * 2);
+
+				& .problem-focal {
+					& video {
+						margin: 0 auto;
+						max-width: 720px;
+						border-radius: var(--unit);
+					}
+				}
+
+				& .problem-text {
+					max-width: 48ch;
 				}
 			}
 		}
