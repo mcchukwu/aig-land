@@ -1,6 +1,9 @@
-* {
+*,
+*::before,
+*::after {
 	font: inherit;
 	line-height: inherit;
+	box-sizing: border-box;
 }
 
 a,
