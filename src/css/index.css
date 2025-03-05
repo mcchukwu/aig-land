@@ -102,6 +102,7 @@ main {
 						background: var(--blue);
 						color: var(--background-color);
 						font-size: 0.789rem;
+						white-space: nowrap;
 						border-radius: var(--unit);
 						padding: var(--unit) calc(var(--unit) * 2);
 						box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
